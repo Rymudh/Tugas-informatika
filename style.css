@@ -37,18 +37,36 @@ body {
   font-size: 2rem;
   font-weight: 700;
   color: #fff;
+  font-style: italic;
 }
 
 .navbar .navbar-logo span {
-  var (--primary)
-
+  color: var(--primary);
 }
 
 .navbar .navbar-nav a {
-  color: #fff ;
+  color: #fff;
   display: inline-block;
-  font-size: 1.4rem;
-  margin: 0;
-  
+  font-size: 1.4m;
+  margin: 0 1rem;
+}
 
+.navbar .navbar-nav a:hover {
+  color: var(--primary);
+}
+
+.navbar .navbar-nav a::after {
+  content: "";
+  display: block;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.1rem solid var(--primary);
+  transform: scaleX(0);
+  transition: 0.2s linear;
+}
+
+.navbar .navbar-nav a:hover::after {
+  transform: scaleX(0.5);
+}
+
+.navbar-extra {
 }
