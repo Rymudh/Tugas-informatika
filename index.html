@@ -1,44 +1,806 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kopi Kenangan Senja</title>
+<html lang="id">
 
-    <!--- fonts -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Kelas X PPLG 1</title>
+    <style>
+        /* --- Root Variables & Themes --- */
+        :root {
+            --bg-color: #f4f7f6;<!DOCTYPE html>
+<html lang="id">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Kelas X PPLG 1</title>
+    <style>
+        /* --- Root Variables & Themes --- */
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --primary-color: #4a90e2;
+            --accent-color: #34495e;
+        }
 
-    <!-- feather icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
-    <!-- my style -->
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #f4f7f6;
+            --card-bg: #2d2d2d;
+            --primary-color: #3498db;
+            --accent-color: #bdc3c7;
+        }
 
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <!-- Navbar start -->
-    <nav class="navbar">
-      <a href="#" class="navbar-logo"> kenangan <span>senja</span>.</a>
-      <div class="navbar-nav">
-        <a href="#">Home</a>
-        <a href="#about">Tentang kami</a>
-        <a href="#menu">Menu</a>
-        <a href="#contact">Kontak</a>
-      </div>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
 
-      <div class="navbar-extra">
-        <a href="#" id="search"><i data-feather="search"></i></a>
-        <a href="#" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
-        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
-      </div>
-    </nav>
-    <!-- Navbar end -->
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-    <!-- feather icons -->
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Toggle Switch --- */
+        .theme-switch-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .theme-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* --- Layout Sections --- */
+        .section-title {
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Siswa List --- */
+        .siswa-list {
+            height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .siswa-item {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--accent-color);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- Table Style --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        th {
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>X PPLG 1</h1>
+        <p>Pengembangan Perangkat Lunak dan GIM</p>
+    </header>
+
+    <div class="container">
+        <div class="theme-switch-wrapper">
+            <button class="theme-btn" id="theme-toggle">Ubah Mode 🌙</button>
+        </div>
+
+        <div class="grid-container">
+            <div class="card">
+                <h2 class="section-title">📅 Jadwal Pelajaran</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Mata Pelajaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Senin</td>
+                            <td>Dasar Program, Agama</td>
+                        </tr>
+                        <tr>
+                            <td>Selasa</td>
+                            <td>Matematika, B. Inggris</td>
+                        </tr>
+                        <tr>
+                            <td>Rabu</td>
+                            <td>Web Statis, IPAS</td>
+                        </tr>
+                        <tr>
+                            <td>Kamis</td>
+                            <td>Pancasila, Olahraga</td>
+                        </tr>
+                        <tr>
+                            <td>Jumat</td>
+                            <td>PKK, B. Indonesia</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">👥 Daftar Siswa (39)</h2>
+                <div class="siswa-" id="siswa-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 X PPLG 1 - Created with ❤️ by AI
+    </footer>
+
     <script>
-      feather.replace();
+        // 1. Logika Daftar Siswa Otomatis
+        const siswaContainer = document.getElementById('siswa-container');
+        const jumlahSiswa = 39;
+
+        const dataSiswa = [
+            { nama: 'ABDUL JAMIL FEBRIANSYAH', nisn: '0104968542' },
+            { nama: 'AHMAD MUHAEMIN KAMIL', nisn: '0095181886' },
+            { nama: 'ALIIFAH MUTIARA SUKMA SYAHIRA', nisn: '0106660067' },
+            { nama: 'AREEQAH AZ ZAHRA', nisn: '0105446403' },
+            { nama: 'ARIEF DWI RIZKI', nisn: '0107541141' },
+            { nama: 'AULYA NASYA RAMADHANI', nisn: '0092320434' },
+            { nama: 'BENARIZKY PUTRA KURNIAWAN', nisn: '0106126991' },
+            { nama: 'BUNGA AYUNI FAZRIANTI', nisn: '0094587275' },
+            { nama: 'DEVIT WILIANSYAH', nisn: '0102986192' },
+            { nama: 'ELSA DWI LASMANA', nisn: '0091582823' },
+            { nama: 'EVAN ADITYA PRATAMA', nisn: '0095523434' },
+            { nama: 'FAISAL AKBAR MUBARAQ ZEIN', nisn: '0094222525' },
+            { nama: 'FAJRILLAH SYIFATUL JANNAH', nisn: '0108192395' },
+            { nama: 'HENDRA PERMANA', nisn: '0098282811' },
+            { nama: 'IMAN PUTRA PRATAMA', nisn: '0095757021' },
+            { nama: 'JASKIA ELLYSIA', nisn: '0107248300' },
+            { nama: 'LUBNA APRELIA AZHAR', nisn: '0105792130' },
+            { nama: 'M. RIZALALUDIN ALFATIH', nisn: '0086849145' },
+            { nama: 'MUHAIMIN HASAN ARDHI MUQAFFI', nisn: '0091610557' },
+            { nama: 'MUHAMAD JIBRILIAN SADIQ AKASYA', nisn: '0106367762' },
+            { nama: 'MUHAMMAD ADZKHA SOPIIAN', nisn: '0106978952' },
+            { nama: 'MUHAMMAD FADLI ADIYAKSA', nisn: '0108865277' },
+            { nama: 'MUHAMMAD LUTHFI HENDRAWAN', nisn: '0104705146' },
+            { nama: 'MUHAMMAD PATURAHMAN', nisn: '0105732027' },
+            { nama: 'MUHAMMAD RIDWAN HERLINO', nisn: '3109993684' },
+            { nama: 'MUHAMMAD RIZKY PRATAMA', nisn: '0093786332' },
+            { nama: 'MUHAMMAD ZULMI AL FAUZAN', nisn: '0099243370' },
+            { nama: 'NADIELA MUTHIARA ULFA HARIYANTO', nisn: '0093702447' },
+            { nama: 'NENG DINA SITI PADILAH', nisn: '0108039205' },
+            { nama: 'NESSA AURA PUTRI', nisn: '0105831097' },
+            { nama: 'PUTRA DHAMARIS', nisn: '0098750803' },
+            { nama: 'RAISYA ALVIANI SITI NURFAUZIYAH', nisn: '0105358419' },
+            { nama: 'RIFKI FAUZI', nisn: '0102270221' },
+            { nama: 'SABRINA KEYLANDRA GAUDY', nisn: '0092061105' },
+            { nama: 'SAGIV TAQY DHIAULHAQ', nisn: '3092215175' },
+            { nama: 'SEPTI SHWALUNI', nisn: '0103794126' },
+            { nama: 'SULTHAN HIFDZU AL DIEN', nisn: '0109173707' },
+            { nama: 'SYAKIRA ALFINA YASMIN', nisn: '0092897166' },
+            { nama: 'SYNTA AWALING RAHMAWATI R', nisn: '0094450017' },
+            { nama: 'TAOFIQ NUR MUHAMMAD IRVAN', nisn: '0094645603' },
+            { nama: 'WAFA FATHUROHMAN', nisn: '0096282914' }
+        ];
+
+        dataSiswa.forEach(siswa => {
+            const item = document.createElement('div');
+            item.className = 'siswa-item';
+            item.innerHTML = `<span>${siswa.nama}</span> <small>NISN: ${siswa.nisn}</small>`;
+            siswaContainer.appendChild(item);
+        });
+
+        // 2. Logika Dark Mode
+        const toggleBtn = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                toggleBtn.innerHTML = "Ubah Mode ☀️";
+            }
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.innerHTML = "Ubah Mode 🌙";
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.innerHTML = "Ubah Mode ☀️";
+            }
+        });
     </script>
-  </body>
+
+</body>
+
+</html><!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Kelas X PPLG 1</title>
+    <style>
+        /* --- Root Variables & Themes --- */
+        :root {
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --primary-color: #4a90e2;
+            --accent-color: #34495e;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #f4f7f6;
+            --card-bg: #2d2d2d;
+            --primary-color: #3498db;
+            --accent-color: #bdc3c7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Toggle Switch --- */
+        .theme-switch-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .theme-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* --- Layout Sections --- */
+        .section-title {
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Siswa List --- */
+        .siswa-list {
+            height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .siswa-item {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--accent-color);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- Table Style --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        th {
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>X PPLG 1</h1>
+        <p>Pengembangan Perangkat Lunak dan GIM</p>
+    </header>
+
+    <div class="container">
+        <div class="theme-switch-wrapper">
+            <button class="theme-btn" id="theme-toggle">Ubah Mode 🌙</button>
+        </div>
+
+        <div class="grid-container">
+            <div class="card">
+                <h2 class="section-title">📅 Jadwal Pelajaran</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Mata Pelajaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Senin</td>
+                            <td>Dasar Program, Agama</td>
+                        </tr>
+                        <tr>
+                            <td>Selasa</td>
+                            <td>Matematika, B. Inggris</td>
+                        </tr>
+                        <tr>
+                            <td>Rabu</td>
+                            <td>Web Statis, IPAS</td>
+                        </tr>
+                        <tr>
+                            <td>Kamis</td>
+                            <td>Pancasila, Olahraga</td>
+                        </tr>
+                        <tr>
+                            <td>Jumat</td>
+                            <td>PKK, B. Indonesia</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">👥 Daftar Siswa (39)</h2>
+                <div class="siswa-" id="siswa-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 X PPLG 1 - Created with ❤️ by AI
+    </footer>
+
+    <script>
+        // 1. Logika Daftar Siswa Otomatis
+        const siswaContainer = document.getElementById('siswa-container');
+        const jumlahSiswa = 39;
+
+        const dataSiswa = [
+            { nama: 'ABDUL JAMIL FEBRIANSYAH', nisn: '0104968542' },
+            { nama: 'AHMAD MUHAEMIN KAMIL', nisn: '0095181886' },
+            { nama: 'ALIIFAH MUTIARA SUKMA SYAHIRA', nisn: '0106660067' },
+            { nama: 'AREEQAH AZ ZAHRA', nisn: '0105446403' },
+            { nama: 'ARIEF DWI RIZKI', nisn: '0107541141' },
+            { nama: 'AULYA NASYA RAMADHANI', nisn: '0092320434' },
+            { nama: 'BENARIZKY PUTRA KURNIAWAN', nisn: '0106126991' },
+            { nama: 'BUNGA AYUNI FAZRIANTI', nisn: '0094587275' },
+            { nama: 'DEVIT WILIANSYAH', nisn: '0102986192' },
+            { nama: 'ELSA DWI LASMANA', nisn: '0091582823' },
+            { nama: 'EVAN ADITYA PRATAMA', nisn: '0095523434' },
+            { nama: 'FAISAL AKBAR MUBARAQ ZEIN', nisn: '0094222525' },
+            { nama: 'FAJRILLAH SYIFATUL JANNAH', nisn: '0108192395' },
+            { nama: 'HENDRA PERMANA', nisn: '0098282811' },
+            { nama: 'IMAN PUTRA PRATAMA', nisn: '0095757021' },
+            { nama: 'JASKIA ELLYSIA', nisn: '0107248300' },
+            { nama: 'LUBNA APRELIA AZHAR', nisn: '0105792130' },
+            { nama: 'M. RIZALALUDIN ALFATIH', nisn: '0086849145' },
+            { nama: 'MUHAIMIN HASAN ARDHI MUQAFFI', nisn: '0091610557' },
+            { nama: 'MUHAMAD JIBRILIAN SADIQ AKASYA', nisn: '0106367762' },
+            { nama: 'MUHAMMAD ADZKHA SOPIIAN', nisn: '0106978952' },
+            { nama: 'MUHAMMAD FADLI ADIYAKSA', nisn: '0108865277' },
+            { nama: 'MUHAMMAD LUTHFI HENDRAWAN', nisn: '0104705146' },
+            { nama: 'MUHAMMAD PATURAHMAN', nisn: '0105732027' },
+            { nama: 'MUHAMMAD RIDWAN HERLINO', nisn: '3109993684' },
+            { nama: 'MUHAMMAD RIZKY PRATAMA', nisn: '0093786332' },
+            { nama: 'MUHAMMAD ZULMI AL FAUZAN', nisn: '0099243370' },
+            { nama: 'NADIELA MUTHIARA ULFA HARIYANTO', nisn: '0093702447' },
+            { nama: 'NENG DINA SITI PADILAH', nisn: '0108039205' },
+            { nama: 'NESSA AURA PUTRI', nisn: '0105831097' },
+            { nama: 'PUTRA DHAMARIS', nisn: '0098750803' },
+            { nama: 'RAISYA ALVIANI SITI NURFAUZIYAH', nisn: '0105358419' },
+            { nama: 'RIFKI FAUZI', nisn: '0102270221' },
+            { nama: 'SABRINA KEYLANDRA GAUDY', nisn: '0092061105' },
+            { nama: 'SAGIV TAQY DHIAULHAQ', nisn: '3092215175' },
+            { nama: 'SEPTI SHWALUNI', nisn: '0103794126' },
+            { nama: 'SULTHAN HIFDZU AL DIEN', nisn: '0109173707' },
+            { nama: 'SYAKIRA ALFINA YASMIN', nisn: '0092897166' },
+            { nama: 'SYNTA AWALING RAHMAWATI R', nisn: '0094450017' },
+            { nama: 'TAOFIQ NUR MUHAMMAD IRVAN', nisn: '0094645603' },
+            { nama: 'WAFA FATHUROHMAN', nisn: '0096282914' }
+        ];
+
+        dataSiswa.forEach(siswa => {
+            const item = document.createElement('div');
+            item.className = 'siswa-item';
+            item.innerHTML = `<span>${siswa.nama}</span> <small>NISN: ${siswa.nisn}</small>`;
+            siswaContainer.appendChild(item);
+        });
+
+        // 2. Logika Dark Mode
+        const toggleBtn = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                toggleBtn.innerHTML = "Ubah Mode ☀️";
+            }
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.innerHTML = "Ubah Mode 🌙";
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.innerHTML = "Ubah Mode ☀️";
+            }
+        });
+    </script>
+
+</body>
+
 </html>
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --primary-color: #4a90e2;
+            --accent-color: #34495e;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #1a1a1a;
+            --text-color: #f4f7f6;
+            --card-bg: #2d2d2d;
+            --primary-color: #3498db;
+            --accent-color: #bdc3c7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Toggle Switch --- */
+        .theme-switch-wrapper {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .theme-btn {
+            padding: 10px 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* --- Layout Sections --- */
+        .section-title {
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* --- Siswa List --- */
+        .siswa-list {
+            height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .siswa-item {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--accent-color);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* --- Table Style --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--accent-color);
+        }
+
+        th {
+            color: var(--primary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>X PPLG 1</h1>
+        <p>Pengembangan Perangkat Lunak dan GIM</p>
+    </header>
+
+    <div class="container">
+        <div class="theme-switch-wrapper">
+            <button class="theme-btn" id="theme-toggle">Ubah Mode 🌙</button>
+        </div>
+
+        <div class="grid-container">
+            <div class="card">
+                <h2 class="section-title">📅 Jadwal Pelajaran</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hari</th>
+                            <th>Mata Pelajaran</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Senin</td>
+                            <td>Dasar Program, Agama</td>
+                        </tr>
+                        <tr>
+                            <td>Selasa</td>
+                            <td>Matematika, B. Inggris</td>
+                        </tr>
+                        <tr>
+                            <td>Rabu</td>
+                            <td>Web Statis, IPAS</td>
+                        </tr>
+                        <tr>
+                            <td>Kamis</td>
+                            <td>Pancasila, Olahraga</td>
+                        </tr>
+                        <tr>
+                            <td>Jumat</td>
+                            <td>PKK, B. Indonesia</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">👥 Daftar Siswa (39)</h2>
+                <div class="siswa-" id="siswa-container">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 X PPLG 1 - Created with ❤️ by AI
+    </footer>
+
+    <script>
+        // 1. Logika Daftar Siswa Otomatis
+        const siswaContainer = document.getElementById('siswa-container');
+        const jumlahSiswa = 39;
+
+        const dataSiswa = [
+            { nama: 'ABDUL JAMIL FEBRIANSYAH', nisn: '0104968542' },
+            { nama: 'AHMAD MUHAEMIN KAMIL', nisn: '0095181886' },
+            { nama: 'ALIIFAH MUTIARA SUKMA SYAHIRA', nisn: '0106660067' },
+            { nama: 'AREEQAH AZ ZAHRA', nisn: '0105446403' },
+            { nama: 'ARIEF DWI RIZKI', nisn: '0107541141' },
+            { nama: 'AULYA NASYA RAMADHANI', nisn: '0092320434' },
+            { nama: 'BENARIZKY PUTRA KURNIAWAN', nisn: '0106126991' },
+            { nama: 'BUNGA AYUNI FAZRIANTI', nisn: '0094587275' },
+            { nama: 'DEVIT WILIANSYAH', nisn: '0102986192' },
+            { nama: 'ELSA DWI LASMANA', nisn: '0091582823' },
+            { nama: 'EVAN ADITYA PRATAMA', nisn: '0095523434' },
+            { nama: 'FAISAL AKBAR MUBARAQ ZEIN', nisn: '0094222525' },
+            { nama: 'FAJRILLAH SYIFATUL JANNAH', nisn: '0108192395' },
+            { nama: 'HENDRA PERMANA', nisn: '0098282811' },
+            { nama: 'IMAN PUTRA PRATAMA', nisn: '0095757021' },
+            { nama: 'JASKIA ELLYSIA', nisn: '0107248300' },
+            { nama: 'LUBNA APRELIA AZHAR', nisn: '0105792130' },
+            { nama: 'M. RIZALALUDIN ALFATIH', nisn: '0086849145' },
+            { nama: 'MUHAIMIN HASAN ARDHI MUQAFFI', nisn: '0091610557' },
+            { nama: 'MUHAMAD JIBRILIAN SADIQ AKASYA', nisn: '0106367762' },
+            { nama: 'MUHAMMAD ADZKHA SOPIIAN', nisn: '0106978952' },
+            { nama: 'MUHAMMAD FADLI ADIYAKSA', nisn: '0108865277' },
+            { nama: 'MUHAMMAD LUTHFI HENDRAWAN', nisn: '0104705146' },
+            { nama: 'MUHAMMAD PATURAHMAN', nisn: '0105732027' },
+            { nama: 'MUHAMMAD RIDWAN HERLINO', nisn: '3109993684' },
+            { nama: 'MUHAMMAD RIZKY PRATAMA', nisn: '0093786332' },
+            { nama: 'MUHAMMAD ZULMI AL FAUZAN', nisn: '0099243370' },
+            { nama: 'NADIELA MUTHIARA ULFA HARIYANTO', nisn: '0093702447' },
+            { nama: 'NENG DINA SITI PADILAH', nisn: '0108039205' },
+            { nama: 'NESSA AURA PUTRI', nisn: '0105831097' },
+            { nama: 'PUTRA DHAMARIS', nisn: '0098750803' },
+            { nama: 'RAISYA ALVIANI SITI NURFAUZIYAH', nisn: '0105358419' },
+            { nama: 'RIFKI FAUZI', nisn: '0102270221' },
+            { nama: 'SABRINA KEYLANDRA GAUDY', nisn: '0092061105' },
+            { nama: 'SAGIV TAQY DHIAULHAQ', nisn: '3092215175' },
+            { nama: 'SEPTI SHWALUNI', nisn: '0103794126' },
+            { nama: 'SULTHAN HIFDZU AL DIEN', nisn: '0109173707' },
+            { nama: 'SYAKIRA ALFINA YASMIN', nisn: '0092897166' },
+            { nama: 'SYNTA AWALING RAHMAWATI R', nisn: '0094450017' },
+            { nama: 'TAOFIQ NUR MUHAMMAD IRVAN', nisn: '0094645603' },
+            { nama: 'WAFA FATHUROHMAN', nisn: '0096282914' }
+        ];
+
+        dataSiswa.forEach(siswa => {
+            const item = document.createElement('div');
+            item.className = 'siswa-item';
+            item.innerHTML = `<span>${siswa.nama}</span> <small>NISN: ${siswa.nisn}</small>`;
+            siswaContainer.appendChild(item);
+        });
+
+        // 2. Logika Dark Mode
+        const toggleBtn = document.getElementById('theme-toggle');
+        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'dark') {
+                toggleBtn.innerHTML = "Ubah Mode ☀️";
+            }
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            let theme = document.documentElement.getAttribute('data-theme');
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                toggleBtn.innerHTML = "Ubah Mode 🌙";
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.innerHTML = "Ubah Mode ☀️";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+
