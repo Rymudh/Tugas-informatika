@@ -1,269 +1,188 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Kelas X PPLG 1</title>
+    <title>Jadwal Imsakiyah & Doa Ramadhan</title>
     <style>
-        /* --- Root Variables & Themes --- */
+        /* --- CSS VARIABLES & RESET --- */
         :root {
-            --bg-color: #f4f7f6;
-            --text-color: #333;
-            --card-bg: #ffffff;
-            --primary-color: #4a90e2;
-            --accent-color: #34495e;
+            --primary-color: #0F5132; /* Hijau Tua */
+            --accent-color: #D4AF37; /* Emas */
+            --bg-color: #F3F4F6;
+            --card-bg: #FFFFFF;
+            --text-dark: #1F2937;
         }
 
-        [data-theme="dark"] {
-            --bg-color: #1a1a1a;
-            --text-color: #f4f7f6;
-            --card-bg: #2d2d2d;
-            --primary-color: #3498db;
-            --accent-color: #bdc3c7;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            transition: all 0.3s ease;
-            line-height: 1.6;
-        }
-
+        /* --- HEADER --- */
         header {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(135deg, var(--primary-color), #093922);
+            color: white; padding: 2rem 1rem; text-align: center; border-bottom: 5px solid var(--accent-color);
         }
+        header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
 
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 0 20px;
-        }
-
-        /* --- Toggle Switch --- */
-        .theme-switch-wrapper {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 20px;
-        }
-
-        .theme-btn {
-            padding: 10px 20px;
-            cursor: pointer;
-            border: none;
-            border-radius: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: bold;
-        }
-
-        /* --- Layout Sections --- */
+        /* --- CONTAINER --- */
+        .container { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
         .section-title {
-            border-bottom: 2px solid var(--primary-color);
-            display: inline-block;
-            margin-bottom: 20px;
+            text-align: center; color: var(--primary-color); margin-bottom: 1.5rem;
+            font-size: 1.8rem; position: relative;
+        }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 4px;
+            background-color: var(--accent-color); margin: 0.5rem auto 0; border-radius: 2px;
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+        /* --- TABEL JADWAL --- */
+        .schedule-wrapper {
+            overflow-x: auto; background: var(--card-bg); border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 3rem;
         }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th, td { padding: 12px 15px; text-align: center; border-bottom: 1px solid #eee; }
+        th { background-color: var(--primary-color); color: white; font-weight: 600; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #e8f5e9; cursor: default; }
 
-        .card {
-            background: var(--card-bg);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        /* Highlight Baris Hari Ini (Opsional JS) */
+        .today-row { background-color: #d1fae5 !important; font-weight: bold; border-left: 5px solid var(--accent-color); }
+
+        /* --- KARTU DOA --- */
+        .doa-grid { display: grid; gap: 1.5rem; }
+        .doa-card {
+            background: var(--card-bg); border-radius: 12px; padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-top: 5px solid var(--accent-color);
         }
-
-        /* --- Siswa List --- */
-        .siswa-list {
-            height: 300px;
-            overflow-y: auto;
-            padding-right: 10px;
+        .doa-title { font-size: 1.2rem; font-weight: bold; color: var(--primary-color); margin-bottom: 1rem; }
+        .arabic-text {
+            font-family: 'Traditional Arabic', serif; font-size: 2rem; text-align: right;
+            direction: rtl; margin-bottom: 1rem; line-height: 1.8;
         }
+        .latin-text { color: var(--primary-color); font-style: italic; margin-bottom: 0.5rem; font-weight: 600; }
+        .translation { color: #666; font-size: 0.95rem; }
 
-        .siswa-item {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--accent-color);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        /* --- Table Style --- */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th,
-        td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid var(--accent-color);
-        }
-
-        th {
-            color: var(--primary-color);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            font-size: 0.9rem;
-            opacity: 0.7;
+        footer { text-align: center; padding: 2rem; color: #666; font-size: 0.9rem; margin-top: 2rem; }
+        
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.5rem; }
+            .arabic-text { font-size: 1.6rem; }
         }
     </style>
 </head>
-
 <body>
 
     <header>
-        <h1>X PPLG 1</h1>
-        <p>Pengembangan Perangkat Lunak dan GIM</p>
+        <h1>Jadwal Ramadhan</h1>
+        <p>Marhaban Ya Ramadhan</p>
     </header>
 
-    <div class="container">
-        <div class="theme-switch-wrapper">
-            <button class="theme-btn" id="theme-toggle">Ubah Mode 🌙</button>
-        </div>
-
-        <div class="grid-container">
-            <div class="card">
-                <h2 class="section-title">📅 Jadwal Pelajaran Minggu 3</h2>
+    <main class="container">
+        
+        <section>
+            <h2 class="section-title">Jadwal Imsakiyah & Buka Puasa</h2>
+            <div class="schedule-wrapper">
                 <table>
                     <thead>
                         <tr>
-                            <th>Hari</th>
-                            <th>Mata Pelajaran</th>
+                            <th>Ramadhan</th>
+                            <th>Imsak</th>
+                            <th>Subuh</th>
+                            <th>Maghrib (Buka)</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Senin</td>
-                            <td>PJOK, Produktiv, B.INDO, BP/BK</td>
-                        </tr>
-                        <tr>
-                            <td>Selasa</td>
-                            <td>IPAS, B.Sunda, PKN, Produktiv</td>
-                        </tr>
-                        <tr>
-                            <td>Rabu</td>
-                            <td>PAI, B.INDO, Informatika, B.INGGRIS</td>
-                        </tr>
-                        <tr>
-                            <td>Kamis</td>
-                            <td>MTK, IPAS, Produktiv</td>
-                        </tr>
-                        <tr>
-                            <td>Jumat</td>
-                            <td>Sejarah, Informatika, Seni Bsudaya</td>
-                        </tr>
-                    </tbody>
+                    <tbody id="table-body">
+                        </tbody>
                 </table>
             </div>
+        </section>
 
-            <div class="card">
-                <h2 class="section-title">👥 Daftar Siswa (39)</h2>
-                <div class="siswa-" id="siswa-container">
+        <section>
+            <h2 class="section-title">Kumpulan Doa</h2>
+            <div class="doa-grid">
+                <div class="doa-card">
+                    <div class="doa-title">🌙 Niat Puasa</div>
+                    <div class="arabic-text">نَوَيْتُ صَوْمَ غَدٍ عَنْ أَدَاءِ فَرْضِ شَهْرِ رَمَضَانَ هَذِهِ السَّنَةِ لِلّٰهِ تَعَالَى</div>
+                    <div class="latin-text">"Nawaitu shauma ghadin 'an adā'i fardhi syahri Ramadhāna hādzihis sanati lillāhi ta'ālā."</div>
+                    <div class="translation">Artinya: "Aku berniat puasa esok hari untuk menunaikan fardhu bulan Ramadhan tahun ini, karena Allah Ta'ala."</div>
+                </div>
+
+                <div class="doa-card">
+                    <div class="doa-title">🍲 Doa Berbuka Puasa</div>
+                    <div class="arabic-text">اَللّٰهُمَّ لَكَ صُمْتُ وَبِكَ آمَنْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ</div>
+                    <div class="latin-text">"Allahumma laka shumtu wa bika āmantu wa 'alā rizqika afthartu."</div>
+                    <div class="translation">Artinya: "Ya Allah, untuk-Mu aku berpuasa, kepada-Mu aku beriman, dan dengan rezeki-Mu aku berbuka."</div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
+
+    </main>
 
     <footer>
-        &copy; 2026 X PPLG 1 - Created with ❤️ by AI
+        <p>Selamat Menunaikan Ibadah Puasa<br>&copy; 2026</p>
     </footer>
 
     <script>
-        // 1. Logika Daftar Siswa Otomatis
-        const siswaContainer = document.getElementById('siswa-container');
-        const jumlahSiswa = 39;
-
-        const dataSiswa = [
-            { nama: 'ABDUL JAMIL FEBRIANSYAH', nisn: '0104968542' }, 
-    { nama: 'AHMAD MUHAEMIN KAMIL', nisn: '0095181886' }, 
-    { nama: 'ALIIFAH MUTIARA SUKMA SYAHIRA', nisn: '0106660067' },
-    { nama: 'AREEQAH AZ ZAHRA', nisn: '0105446403' }, 
-    { nama: 'ARIEF DWI RIZKI', nisn: '0107541141' },
-    { nama: 'AULYA NASYA RAMADHANI', nisn: '0092320434' }, 
-    { nama: 'BENARIZKY PUTRA KURNIAWAN', nisn: '0106126991' }, 
-    { nama: 'BUNGA AYUNI FAZRIANTI', nisn: '0094587275' },
-    { nama: 'DEVIT WILIANSYAH', nisn: '0102986192' },
-    { nama: 'ELSA DWI LASMANA', nisn: '0091582823' }, 
-    { nama: 'EVAN ADITYA PRATAMA', nisn: '0095523434' }, 
-    { nama: 'FAISAL AKBAR MUBARAQ ZEIN', nisn: '0094222525' }, 
-    { nama: 'FAJRILLAH SYIFATUL JANNAH', nisn: '0108192395' }, 
-    { nama: 'HENDRA PERMANA', nisn: '0098282811' },
-    { nama: 'IMAN PUTRA PRATAMA', nisn: '0095757021' },
-    { nama: 'JASKIA ELLYSIA', nisn: '0107248300' }, 
-    { nama: 'LUBNA APRELIA AZHAR', nisn: '0105792130' },
-    { nama: 'M. RIZALALUDIN ALFATIH', nisn: '0086849145' },
-    { nama: 'MUHAIMIN HASAN ARDHI MUQAFFI', nisn: '0091610557' },
-    { nama: 'MUHAMAD JIBRILIAN SADIQ AKASYA', nisn: '0106367762' }, 
-    { nama: 'MUHAMMAD ADZKHA SOPIIAN', nisn: '0106978952' }, 
-    { nama: 'MUHAMMAD FADLI ADIYAKSA', nisn: '0108865277' },
-    { nama: 'MUHAMMAD LUTHFI HENDRAWAN', nisn: '0104705146' }, 
-    { nama: 'MUHAMMAD PATURAHMAN', nisn: '0105732027' }, 
-    { nama: 'MUHAMMAD RIDWAN HERLINO', nisn: '3109993684' },
-    { nama: 'MUHAMMAD RIZKY PRATAMA', nisn: '0093786332' },
-    { nama: 'MUHAMMAD ZULMI AL FAUZAN', nisn: '0099243370' },
-    { nama: 'NADIELA MUTHIARA ULFA HARIYANTO', nisn: '0093702447' },
-    { nama: 'NENG DINA SITI PADILAH', nisn: '0108039205' },
-    { nama: 'NESSA AURA PUTRI', nisn: '0105831097' },
-    { nama: 'PUTRA DHAMARIS', nisn: '0098750803' },
-    { nama: 'RAISYA ALVIANI SITI NURFAUZIYAH', nisn: '0105358419' }, 
-    { nama: 'RIFKI FAUZI', nisn: '0102270221' },
-    { nama: 'SABRINA KEYLANDRA GAUDY', nisn: '0092061105' }, 
-    { nama: 'SAGIV TAQY DHIAULHAQ', nisn: '3092215175' }, 
-    { nama: 'SEPTI SHWALUNI', nisn: '0103794126' }, 
-    { nama: 'SULTHAN HIFDZU AL DIEN', nisn: '0109173707' },
-    { nama: 'SYAKIRA ALFINA YASMIN', nisn: '0092897166' }, 
-    { nama: 'SYNTA AWALING RAHMAWATI R', nisn: '0094450017' }, 
-    { nama: 'TAOFIQ NUR MUHAMMAD IRVAN', nisn: '0094645603' }, 
-    { nama: 'WAFA FATHUROHMAN', nisn: '0096282914' }
+        // Data Jadwal dari User
+        const jadwalData = [
+            { day: 1, imsak: "04:31", buka: "18:18" },
+            { day: 2, imsak: "04:32", buka: "18:18" },
+            { day: 3, imsak: "04:32", buka: "18:17" },
+            { day: 4, imsak: "04:32", buka: "18:17" },
+            { day: 5, imsak: "04:32", buka: "18:17" },
+            { day: 6, imsak: "04:32", buka: "18:17" },
+            { day: 7, imsak: "04:32", buka: "18:16" },
+            { day: 8, imsak: "04:32", buka: "18:16" },
+            { day: 9, imsak: "04:33", buka: "18:16" },
+            { day: 10, imsak: "04:33", buka: "18:15" },
+            { day: 11, imsak: "04:33", buka: "18:15" },
+            { day: 12, imsak: "04:33", buka: "18:14" },
+            { day: 13, imsak: "04:33", buka: "18:14" },
+            { day: 14, imsak: "04:33", buka: "18:14" },
+            { day: 15, imsak: "04:33", buka: "18:13" },
+            { day: 16, imsak: "04:33", buka: "18:13" },
+            { day: 17, imsak: "04:33", buka: "18:12" },
+            { day: 18, imsak: "04:33", buka: "18:12" },
+            { day: 19, imsak: "04:33", buka: "18:12" },
+            { day: 20, imsak: "04:33", buka: "18:11" },
+            { day: 21, imsak: "04:33", buka: "18:11" },
+            { day: 22, imsak: "04:33", buka: "18:10" },
+            { day: 23, imsak: "04:33", buka: "18:10" },
+            { day: 24, imsak: "04:33", buka: "18:09" },
+            { day: 25, imsak: "04:33", buka: "18:09" },
+            { day: 26, imsak: "04:33", buka: "18:09" },
+            { day: 27, imsak: "04:32", buka: "18:08" },
+            { day: 28, imsak: "04:32", buka: "18:08" },
+            { day: 29, imsak: "04:32", buka: "18:07" },
+            { day: 30, imsak: "04:32", buka: "18:07" }
         ];
 
-        dataSiswa.forEach(siswa => {
-            const item = document.createElement('div');
-            item.className = 'siswa-item';
-            item.innerHTML = `<span>${siswa.nama}</span> <small>NISN: ${siswa.nisn}</small>`;
-            siswaContainer.appendChild(item);
-        });
+        const tableBody = document.getElementById('table-body');
 
-        // 2. Logika Dark Mode
-        const toggleBtn = document.getElementById('theme-toggle');
-        const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-
-        if (currentTheme) {
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            if (currentTheme === 'dark') {
-                toggleBtn.innerHTML = "Ubah Mode ☀️";
-            }
+        // Fungsi Menambah Menit (untuk hitung Subuh otomatis)
+        function addMinutes(time, minutes) {
+            let [h, m] = time.split(':').map(Number);
+            let date = new Date();
+            date.setHours(h, m + minutes);
+            return date.toTimeString().slice(0, 5);
         }
 
-        toggleBtn.addEventListener('click', () => {
-            let theme = document.documentElement.getAttribute('data-theme');
-            if (theme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'light');
-                localStorage.setItem('theme', 'light');
-                toggleBtn.innerHTML = "Ubah Mode 🌙";
-            } else {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                toggleBtn.innerHTML = "Ubah Mode ☀️";
-            }
+        // Render Tabel
+        jadwalData.forEach(item => {
+            const subuh = addMinutes(item.imsak, 10); // Otomatis Subuh = Imsak + 10 menit
+            
+            const row = `
+                <tr>
+                    <td>${item.day} Ramadhan</td>
+                    <td>${item.imsak}</td>
+                    <td>${subuh}</td>
+                    <td style="color:var(--primary-color); font-weight:bold;">${item.buka}</td>
+                </tr>
+            `;
+            tableBody.innerHTML += row;
         });
     </script>
 
 </body>
-
 </html>
